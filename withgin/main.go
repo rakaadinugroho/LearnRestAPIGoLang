@@ -17,5 +17,8 @@ func main() {
 	route.POST("/register", auth.Register)
 	route.POST("/registerform", auth.RegisterForm)
 	route.GET("/profile/:username", auth.Category)
+	route.GET("/showprofile", auth.ShowUser)
+	route.GET("/showposting", auth.ShowPosting)
+	route.GET("/detailprofile", auth.ShowDetailUser)
 	route.Run(":8089")
 }
