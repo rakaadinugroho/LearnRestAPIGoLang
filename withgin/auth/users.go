@@ -92,5 +92,29 @@ func ShowDetailUser(ctx *gin.Context) {
 		"status" : http.StatusOK,
 		"data"	: user,
 	})
+}
+// function create
+func CreateUser(ctx *gin.Context) {
+	var user model.User
+	err := ctx.ShouldBindJSON(&user)
+	if err != nil {
+		ctx.JSON(http.StatusOK, map[string] interface{} {
+			"status" : http.StatusOK,
+			"messages" : "gagal",
+		})
+		return
+	}
 
+	err = model.DB.Create(&user).Error
+	if err != nil {
+		ctx.JSON(500, map[string] interface{} {
+			"status" : http.StatusInternalServerError,
+			"message" : "error",
+		})
+		return
+	}
+	ctx.JSON(http.StatusInternalServerError, map[string] interface{}{
+		"status" : http.StatusOK,
+		"message" : user,
+	})
 }

@@ -20,5 +20,7 @@ func main() {
 	route.GET("/showprofile", auth.ShowUser)
 	route.GET("/showposting", auth.ShowPosting)
 	route.GET("/detailprofile", auth.ShowDetailUser)
+	//create user (from raw)
+	route.POST("/createprofile", auth.CreateUser)
 	route.Run(":8089")
 }
