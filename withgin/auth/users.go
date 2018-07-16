@@ -142,3 +142,14 @@ func MigrateTable(ctx *gin.Context)  {
 	})
 
 }
+// Create Midleware
+func CheckHeaderAuthorization(ctx *gin.Context) {
+	authorization := ctx.GetHeader("Authorization")
+	if authorization != "12345" { //sample with hardcode 12345
+		ctx.JSON(http.StatusInternalServerError, map[string] interface{} {
+			"message" : "Unautorized",
+		})
+		ctx.Abort()
+	}
+	ctx.Next()
+}
