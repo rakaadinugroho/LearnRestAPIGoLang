@@ -104,7 +104,14 @@ func CreateUser(ctx *gin.Context) {
 		})
 		return
 	}
-
+	err = user.ValidationUser()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, map[string] interface{}{
+			"message" : err.Error(),
+			"status" : http.StatusInternalServerError,
+		})
+		return
+	}
 	err = model.DB.Create(&user).Error
 	if err != nil {
 		ctx.JSON(500, map[string] interface{} {
