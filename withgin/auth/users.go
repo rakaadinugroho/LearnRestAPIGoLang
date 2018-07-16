@@ -125,3 +125,20 @@ func CreateUser(ctx *gin.Context) {
 		"message" : user,
 	})
 }
+// Sample Migration
+func MigrateTable(ctx *gin.Context)  {
+	err :=model.DB.AutoMigrate(&model.Activities{})
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, map[string] interface{}{
+			"status" : http.StatusForbidden,
+			"message" : "gagal dimigrasi",
+		})
+		return
+	}
+
+	ctx.JSON(http.StatusInternalServerError, map[string] interface{}{
+		"status" : http.StatusOK,
+		"message" : "berhasil migrasi",
+	})
+
+}

@@ -28,3 +28,8 @@ func (u User) ValidationUser() error {
 	}
 	return nil
 }
+
+type Activities struct {
+	Running int `json:"running" gorm:"running"`
+	Walking int `json:"walking" gorm:"walking"`
+}
