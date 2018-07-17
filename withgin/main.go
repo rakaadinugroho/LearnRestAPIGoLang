@@ -24,5 +24,8 @@ func main() {
 	route.POST("/createprofile", auth.CreateUser)
 	// Migration
 	route.GET("/migratedb", auth.MigrateTable)
+
+	// http client
+	route.GET("/grabuser", auth.GrabUser)
 	route.Run(":8089")
 }

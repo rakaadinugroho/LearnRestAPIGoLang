@@ -33,3 +33,12 @@ type Activities struct {
 	Running int `json:"running" gorm:"running"`
 	Walking int `json:"walking" gorm:"walking"`
 }
+
+type UserList struct {
+	Data []struct {
+		ID      int    `json:"id"`
+		Name    string `json:"name"`
+		Address string `json:"address"`
+	} `json:"data"`
+	Message string `json:"message"`
+}
