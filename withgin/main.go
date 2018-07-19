@@ -27,5 +27,14 @@ func main() {
 
 	// http client
 	route.GET("/grabuser", auth.GrabUser)
+
+	//authentication
+	route.POST("/auth", auth.AuthMiddleware.LoginHandler)
+	dashboard := route.Group("/dashboard")
+	dashboard.Use(auth.AuthMiddleware.MiddlewareFunc())
+	{
+		dashboard.GET("/hello", auth.SuccessAuthenticator)
+		dashboard.GET("/refresh_token", auth.AuthMiddleware.RefreshHandler)
+	}
 	route.Run(":8089")
 }

@@ -42,3 +42,10 @@ type UserList struct {
 	} `json:"data"`
 	Message string `json:"message"`
 }
+
+// test for JWT Authentication
+type UserJWT struct {
+	UserName  string
+	FirstName string
+	LastName  string
+}
